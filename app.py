@@ -14,7 +14,7 @@ def url_valid(url):
     
 #Search the file for urls aready written    
 def search_file(url):
-    fo= open("data.txt","r")
+    fo= open("/app/data.txt","r")
     for line in fo:
         currentline = line.split(",")
         if currentline[0]== url:
@@ -25,7 +25,7 @@ def search_file(url):
     
 #Search the file for urls aready written    
 def search_file_short(url):
-    fo= open("data.txt","r")
+    fo= open("/app/data.txt","r")
     for line in fo:
         currentline = line.split(",")
         if currentline[1]== url:
@@ -59,11 +59,12 @@ def shorten_url():
 
     if not url_valid(url):
         return bad_request('Url is not valid.')
+    #Search if url is already in file
     if search_file(url) is not None:
         return jsonify({'shortened_url': search_file(url)}), 201
     shortened_url = shorten(url)
     #shortened[shortened_url] = url
-    fo= open("data.txt", "a")
+    fo= open("/app/data.txt", "a")
     fo.writelines(url+","+shortened_url+",\n")
     fo.close()
     return jsonify({'shortened_url': shortened_url}), 201
