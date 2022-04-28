@@ -1,21 +1,17 @@
 import random
 import re
 import string
-from flask import Flask, abort, jsonify, redirect, request, render_template
+from flask import Flask, jsonify, redirect, request
 from flask_cors import CORS, cross_origin
 import validators
 from validators import ValidationFailure
 app = Flask(__name__)
-CORS(app) #Added Cross Origin
+CORS(app) #Added Cross Origin to handle errors
 
 #Validate url
 def url_valid(url):
     return validators.url(url)
-"""
-    prepared_request = PreparedRequest()
-    prepared_request.prepare_url(url, None)
-    return prepared_request.url    
-"""
+
     
 #Placeholder URL Shorterner logic
 def shorten(url):

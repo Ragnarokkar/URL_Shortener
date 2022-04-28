@@ -1,10 +1,5 @@
-//  main.js
-  
-// POST request using fetch()
-console.log("before");
-
-
-function doSomething() {
+ // POST request using fetch()
+function onSubmit() {
     fetch("http://127.0.0.1:5000/shorten", {
      
     // Adding method type
