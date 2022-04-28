@@ -6,6 +6,8 @@ app = Flask(__name__)
 
 #Validate url
 def url_valid(url):
+    if url[:4] != 'http':
+        url = 'http://' + url
     return re.match(regex, url) is not None
 
 #Placeholder URL Shorterner logic
@@ -21,6 +23,7 @@ def my_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     url = request.form['text']
+    
     if not url_valid(url):
         return "Provided url is not valid."
     shortened_url = shorten(url)
