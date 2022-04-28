@@ -29,6 +29,13 @@ def my_form_post():
     shortened_url = shorten(url)
     shortened[shortened_url] = url
     return shortened_url
+    
+#Logic to redirect to the shortened url    
+@app.route('/<alias>', methods=['GET'])
+def get_shortened(alias):
+    url = shortened[alias]
+    
+    return redirect(url, code=302)
 
 #Regular expression to validate url
 regex = re.compile(
