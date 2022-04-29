@@ -1,7 +1,6 @@
 import random
-import re
 import string
-from flask import Flask, jsonify, redirect, request
+from flask import Flask, jsonify, redirect, request, abort
 from flask_cors import CORS, cross_origin
 import validators
 from validators import ValidationFailure
@@ -36,7 +35,7 @@ def search_file_short(url):
     
 #URL Shorterner logic
 def shorten(url):
-    return ''.join(random.choices(string.ascii_uppercase + string.digits, k = 7))
+    return ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase + string.digits, k = 7))
 
 #Function for bad API Calls    
 def bad_request(message):
@@ -80,10 +79,9 @@ def get_shortened(alias):
     if search_file_short(alias) is not None:
         return redirect(search_file_short(alias), code=302)
     
-    return redirect(url, code=302)
+    abort(400)
 
-#Varible to save url and shortened name as key-value pair        
-shortened = {}
+
 
 if __name__ == '__main__':
     app.run(debug=True)
