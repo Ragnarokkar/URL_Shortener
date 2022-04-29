@@ -14,7 +14,7 @@ def url_valid(url):
     
 #Search the file for urls aready written    
 def search_file(url):
-    fo= open("/app/data.txt","r")
+    fo= open("/app/data.txt","r") #path to include docker file path
     for line in fo:
         currentline = line.split(",")
         if currentline[0]== url:
@@ -25,7 +25,7 @@ def search_file(url):
     
 #Search the file for urls aready written    
 def search_file_short(url):
-    fo= open("/app/data.txt","r")
+    fo= open("/app/data.txt","r") #path to include docker file path
     for line in fo:
         currentline = line.split(",")
         if currentline[1]== url:
@@ -64,7 +64,7 @@ def shorten_url():
         return jsonify({'shortened_url': search_file(url)}), 201
     shortened_url = shorten(url)
     #shortened[shortened_url] = url
-    fo= open("/app/data.txt", "a")
+    fo= open("/app/data.txt", "a") #path to include docker file path
     fo.writelines(url+","+shortened_url+",\n")
     fo.close()
     return jsonify({'shortened_url': shortened_url}), 201
