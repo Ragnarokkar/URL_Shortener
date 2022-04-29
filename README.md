@@ -19,3 +19,6 @@
 
 To use a different port change the *port* in the command **docker run -d -p *port*:5000 ragnarokkar/urlshortener-docker** and update the URLs in test/scripts/main.js to use the new port
 	
+**URL Validation**
+
+The API only considers a URL valid if it has protocol in it. So entries like *google.com* will be considered invalid while *https://google.com* will work.
